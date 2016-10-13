@@ -1,0 +1,6 @@
+framework module Pods_ViewscreenUITests {
+  umbrella header "Pods-ViewscreenUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
