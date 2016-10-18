@@ -20,6 +20,7 @@
 		A715FF761DB0ABD00061F3C7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715FF751DB0ABD00061F3C7 /* Extensions.swift */; };
 		A715FF7C1DB0ACD80061F3C7 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715FF7B1DB0ACD80061F3C7 /* VideoCell.swift */; };
 		A715FF7E1DB0B0CF0061F3C7 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715FF7D1DB0B0CF0061F3C7 /* MenuBar.swift */; };
+		A715FF801DB5B84E0061F3C7 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715FF7F1DB5B84D0061F3C7 /* Video.swift */; };
 		AF6FFD5173C46DA765D41CC2 /* Pods_Viewscreen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459CB9D6BC91820D8652B691 /* Pods_Viewscreen.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		A715FF751DB0ABD00061F3C7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A715FF7B1DB0ACD80061F3C7 /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		A715FF7D1DB0B0CF0061F3C7 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		A715FF7F1DB5B84D0061F3C7 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		B2C497C344F4462D287A8ED2 /* Pods-Viewscreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viewscreen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Viewscreen/Pods-Viewscreen.debug.xcconfig"; sourceTree = "<group>"; };
 		B485850E9AE811123821CAC5 /* Pods-ViewscreenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViewscreenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ViewscreenUITests/Pods-ViewscreenUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EBD1CF5192DCAC4FAF97EE9F /* Pods-ViewscreenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViewscreenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ViewscreenTests/Pods-ViewscreenTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +177,8 @@
 		A715FF771DB0AC350061F3C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A715FF7B1DB0ACD80061F3C7 /* VideoCell.swift */,
+				A715FF7D1DB0B0CF0061F3C7 /* MenuBar.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -190,8 +194,7 @@
 		A715FF7A1DB0AC980061F3C7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A715FF7B1DB0ACD80061F3C7 /* VideoCell.swift */,
-				A715FF7D1DB0B0CF0061F3C7 /* MenuBar.swift */,
+				A715FF7F1DB5B84D0061F3C7 /* Video.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				A715FF7E1DB0B0CF0061F3C7 /* MenuBar.swift in Sources */,
 				A715FF4C1DB01B0B0061F3C7 /* Viewscreen.xcdatamodeld in Sources */,
 				A715FF441DB01B0B0061F3C7 /* AppDelegate.swift in Sources */,
+				A715FF801DB5B84E0061F3C7 /* Video.swift in Sources */,
 				A715FF761DB0ABD00061F3C7 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

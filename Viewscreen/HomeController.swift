@@ -10,8 +10,31 @@ import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    
+    var videos: [Video] = {
+        
+        var sadeChannel = Channel()
+        sadeChannel.name = "SadeChannel"
+        sadeChannel.profileImageName = "sadepic"
+        
+        var smoothOperatorVideo = Video()
+        smoothOperatorVideo.title = "Sade - Smooth Operator"
+        smoothOperatorVideo.thumbnailImage = "smooth_operators"
+        smoothOperatorVideo.channel = sadeChannel
+        smoothOperatorVideo.numberOfViews = 23423423242
+        
+        var kissOfLifeVideo = Video()
+        kissOfLifeVideo.title = "Sade - Kiss Of Life"
+        kissOfLifeVideo.thumbnailImage = "kiss_of_life"
+        kissOfLifeVideo.channel = sadeChannel
+        kissOfLifeVideo.numberOfViews = 32323432423
+        
+        return [smoothOperatorVideo, kissOfLifeVideo]
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         navigationItem.title = "Home"
         navigationController?.navigationBar.isTranslucent = false
@@ -29,7 +52,25 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
 
         setupMenuBar()
+        setupNavBarButtons()
 //        setupBottomBar()
+    }
+    
+    func setupNavBarButtons() {
+        let searchImage = UIImage(named: "search")?.withRenderingMode(.alwaysOriginal)
+        let searchBarButton = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
+        
+        let menuImage = UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal)
+        let menuButton = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(handleMore))
+        navigationItem.rightBarButtonItems = [menuButton, searchBarButton]
+    }
+    
+    func handleSearch() {
+        
+    }
+    
+    func handleMore() {
+        
     }
     
     let menuBar: MenuBar = {
@@ -56,20 +97,21 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 //    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return videos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
         
+        cell.video = videos[indexPath.item]
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = (view.frame.width - 16 - 16) * 9 / 16
-        return CGSize(width: view.frame.width, height: height + 16 + 68)
+        return CGSize(width: view.frame.width, height: height + 16 + 88)
     }
     
     
