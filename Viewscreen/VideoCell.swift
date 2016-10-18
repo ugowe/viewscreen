@@ -31,12 +31,9 @@ class VideoCell: BaseCell {
         didSet {
             titleLabel.text = video?.title
             
-            thumbnailImageView.image = UIImage(named: (video?.thumbnailImage)!)
+            setupThumbnailImage()
             
-            if let profileImageName = video?.channel?.profileImageName {
-                userProfileImageView.image = UIImage(named: profileImageName)
-            }
-            
+            setupProfileImage()
             
             if let channelName = video?.channel?.name, let numberOfViews = video?.numberOfViews {
                 
@@ -64,6 +61,18 @@ class VideoCell: BaseCell {
         }
     }
     
+    func setupProfileImage() {
+        if let profileImageUril = video?.channel?.profileImageName {
+            userProfileImageView.loadImageUsingUrlString(urlString: profileImageUril)
+        }
+    }
+    
+    func setupThumbnailImage() {
+        if let thumbnailImageUrl = video?.thumbnailImageName {
+            thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageUrl)
+        }
+    }
+    
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "naturepic")
@@ -77,6 +86,7 @@ class VideoCell: BaseCell {
         imageView.image = UIImage(named: "sadepic")
         imageView.layer.cornerRadius = 22
         imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -90,6 +100,7 @@ class VideoCell: BaseCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Sade - Smooth Operator"
+        label.numberOfLines = 2
         return label
     }()
     
@@ -115,8 +126,9 @@ class VideoCell: BaseCell {
         
         addLayoutConstraints(format: "H:|-16-[v0]-16-|", views: thumbnailImageView)
         addLayoutConstraints(format: "H:|-16-[v0(44)]", views: userProfileImageView)
-        addLayoutConstraints(format: "H:|[v0]|", views: separatorView)
         addLayoutConstraints(format: "V:|-16-[v0]-8-[v1(44)]-36-[v2(1)]|", views: thumbnailImageView, userProfileImageView, separatorView)
+        addLayoutConstraints(format: "H:|[v0]|", views: separatorView)
+  
         
         
         // titleLabel constraints
@@ -126,7 +138,7 @@ class VideoCell: BaseCell {
         
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
         
-        titleLabelHeightConstraint = NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20)
+        titleLabelHeightConstraint = NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 44)
         addConstraint(titleLabelHeightConstraint!)
         
         // subtitle constraints
