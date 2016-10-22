@@ -63,26 +63,26 @@ class VideoCell: BaseCell {
     
     func setupProfileImage() {
         if let profileImageUril = video?.channel?.profileImageName {
-            userProfileImageView.loadImageUsingUrlString(urlString: profileImageUril)
+            userProfileImageView.loadImageUsingUrlString(profileImageUril)
         }
     }
     
     func setupThumbnailImage() {
         if let thumbnailImageUrl = video?.thumbnailImageName {
-            thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageUrl)
+            thumbnailImageView.loadImageUsingUrlString(thumbnailImageUrl)
         }
     }
     
-    let thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
+    let thumbnailImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.image = UIImage(named: "naturepic")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    let userProfileImageView: UIImageView = {
-        let imageView = UIImageView()
+    let userProfileImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.image = UIImage(named: "sadepic")
         imageView.layer.cornerRadius = 22
         imageView.layer.masksToBounds = true

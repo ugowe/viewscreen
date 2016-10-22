@@ -11,26 +11,26 @@ import UIKit
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     
-//    var videos: [Video] = {
-//        
-//        var sadeChannel = Channel()
-//        sadeChannel.name = "SadeChannel"
-//        sadeChannel.profileImageName = "sadepic"
-//        
-//        var smoothOperatorVideo = Video()
-//        smoothOperatorVideo.title = "Sade - Smooth Operator"
-//        smoothOperatorVideo.thumbnailImageName = "smooth_operators"
-//        smoothOperatorVideo.channel = sadeChannel
-//        smoothOperatorVideo.numberOfViews = 23423423242
-//        
-//        var kissOfLifeVideo = Video()
-//        kissOfLifeVideo.title = "Sade - Kiss Of Life"
-//        kissOfLifeVideo.thumbnailImageName = "kiss_of_life"
-//        kissOfLifeVideo.channel = sadeChannel
-//        kissOfLifeVideo.numberOfViews = 32323432423
-//        
-//        return [smoothOperatorVideo, kissOfLifeVideo]
-//    }()
+    //    var videos: [Video] = {
+    //
+    //        var sadeChannel = Channel()
+    //        sadeChannel.name = "SadeChannel"
+    //        sadeChannel.profileImageName = "sadepic"
+    //
+    //        var smoothOperatorVideo = Video()
+    //        smoothOperatorVideo.title = "Sade - Smooth Operator"
+    //        smoothOperatorVideo.thumbnailImageName = "smooth_operators"
+    //        smoothOperatorVideo.channel = sadeChannel
+    //        smoothOperatorVideo.numberOfViews = 23423423242
+    //
+    //        var kissOfLifeVideo = Video()
+    //        kissOfLifeVideo.title = "Sade - Kiss Of Life"
+    //        kissOfLifeVideo.thumbnailImageName = "kiss_of_life"
+    //        kissOfLifeVideo.channel = sadeChannel
+    //        kissOfLifeVideo.numberOfViews = 32323432423
+    //
+    //        return [smoothOperatorVideo, kissOfLifeVideo]
+    //    }()
     
     
     var videos: [Video]?
@@ -50,6 +50,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                     let video = Video()
                     video.title = dictionary["title"] as? String
                     video.thumbnailImageName = dictionary["thumbnail_image_name"] as? String
+                    video.numberOfViews = dictionary["number_of_views"] as? NSNumber
                     
                     let channelDictionary = dictionary["channel"] as! [String: AnyObject]
                     
@@ -61,7 +62,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                     self.videos?.append(video)
                 }
                 
-                self.collectionView?.reloadData()
+                DispatchQueue.main.async {
+                    self.collectionView?.reloadData()
+                }
+                
                 
             } catch let jsonError {
                 print(jsonError)
@@ -73,7 +77,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         fetchVideos()
         
         navigationItem.title = "Home"
@@ -90,10 +94,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-
+        
         setupMenuBar()
         setupNavBarButtons()
-//        setupBottomBar()
+        //        setupBottomBar()
     }
     
     func setupNavBarButtons() {
@@ -123,19 +127,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         view.addLayoutConstraints(format: "H:|[v0]|", views: menuBar)
         view.addLayoutConstraints(format: "V:|[v0(50)]", views: menuBar)
     }
-//    
-//    let bottomBar: UIView = {
-//        let bb = UIView()
-//        bb.backgroundColor = UIColor.green
-//        return bb
-//    }()
-//    
-//    private func setupBottomBar(){
-//        view.addSubview(bottomBar)
-//        view.addLayoutConstraints(format: "H:|[v0]|", views: bottomBar)
-//        view.addLayoutConstraints(format: "V:[v0(50)]|", views: bottomBar)
-//    }
-
+    //
+    //    let bottomBar: UIView = {
+    //        let bb = UIView()
+    //        bb.backgroundColor = UIColor.green
+    //        return bb
+    //    }()
+    //
+    //    private func setupBottomBar(){
+    //        view.addSubview(bottomBar)
+    //        view.addLayoutConstraints(format: "H:|[v0]|", views: bottomBar)
+    //        view.addLayoutConstraints(format: "V:[v0(50)]|", views: bottomBar)
+    //    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return videos?.count ?? 0
     }
